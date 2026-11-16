@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "293579998912",
+    "firebase_url": "https://messup-ee9fc-default-rtdb.firebaseio.com",
+    "project_id": "messup-ee9fc",
+    "storage_bucket": "messup-ee9fc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:293579998912:android:8100bbb332c4c7380b0f25",
+        "android_client_info": {
+          "package_name": "com.example.messup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_ROCiKp7jTbIEui-kEAvYGlZt0rtylAM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

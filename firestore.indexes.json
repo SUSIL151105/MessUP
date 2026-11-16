@@ -1,0 +1,39 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "menuEntries",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "messId", "order": "ASCENDING" },
+        { "fieldPath": "date", "order": "ASCENDING" },
+        { "fieldPath": "mealType", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "mealRatings",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "messId", "order": "ASCENDING" },
+        { "fieldPath": "date", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "feedback",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "messId", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "announcements",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "messId", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

@@ -1,0 +1,83 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions for Security Rules
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isUser(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function isFoodIncharge() {
+      return isAuthenticated() && (
+        (getUserData() != null && getUserData().role == "FOOD_INCHARGE" && getUserData().isApproved == true)
+      );
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.email == "theweber0000@gmail.com" ||
+        (getUserData() != null && getUserData().role == "ADMIN")
+      );
+    }
+
+    // User Profiles
+    match /users/{userId} {
+      allow read, create, update: if true;
+      allow delete: if isAdmin() || true;
+    }
+
+    // Institutions
+    match /institutions/{institutionId} {
+      allow read, write: if true;
+    }
+
+    // Hostels
+    match /hostels/{hostelId} {
+      allow read, write: if true;
+    }
+
+    // Messes
+    match /messes/{messId} {
+      allow read, write: if true;
+    }
+
+    // Menu Entries
+    match /menuEntries/{menuId} {
+      allow read, create, update, delete: if true;
+    }
+
+    // Meal Ratings
+    match /mealRatings/{ratingId} {
+      allow read, create, update, delete: if true;
+    }
+
+    // Feedback & Complaints
+    match /feedback/{feedbackId} {
+      allow read, create, update, delete: if true;
+    }
+
+    // Announcements
+    match /announcements/{announcementId} {
+      allow read, create, update, delete: if true;
+    }
+
+    // Audit Logs
+    match /auditLogs/{logId} {
+      allow read, create: if true;
+      allow update, delete: if false; // Append-only audit logs
+    }
+
+    // Trigger Email Firestore collection (Trigger Email extension / SMTP worker)
+    match /mail/{mailId} {
+      allow read, create, update, delete: if true;
+    }
+  }
+}
